@@ -1,26 +1,37 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setLoggedInUser } from '../store/actions/userActions';
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import { Link } from 'react-router-dom';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { setLoggedInUser } from '../store/actions/userActions';
 
-const LoginPage = () => {
+const theme = createTheme();
+
+function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [isSignup, setIsSignup] = useState(null);
-  const [username, setUsername] = useState('');
-  const [fullname, setFullname] = useState('');
-  const [password, setPassword] = useState('');
-  const [repassword, setIsRepassword] = useState('');
 
   const setUser = async (ev) => {
     ev.preventDefault();
-    if (password !== repassword && isSignup) return;
+    const data = new FormData(ev.currentTarget);
     const user = {
-      username,
-      password,
-      fullname,
+      username: data.get('username'),
+      password: data.get('password'),
+      fullname: data.get('fullname') || '',
     };
+    if (user.password !== data.get('repassword') && isSignup) return;
     const success = await dispatch(
       setLoggedInUser({
         user,
@@ -31,48 +42,94 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login main-layout">
-      <form onSubmit={setUser}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(ev) => setUsername(ev.target.value)}
-        />
-        {isSignup && (
-          <input
-            type="text"
-            placeholder="Full name"
-            value={fullname}
-            onChange={(ev) => setFullname(ev.target.value)}
-          />
-        )}
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(ev) => setPassword(ev.target.value)}
-        />
-        {isSignup && (
-          <input
-            type="password"
-            placeholder="Verify password"
-            value={repassword}
-            onChange={(ev) => setIsRepassword(ev.target.value)}
-          />
-        )}
-        <button>{isSignup ? 'Sign up' : 'Login'}</button>
-      </form>
-      <span
-        onClick={(ev) => {
-          setIsSignup((prev) => !prev);
-          ev.preventDefault();
-        }}
-      >
-        {isSignup ? 'Login' : 'Sign up'}
-      </span>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            {isSignup ? 'Sign up' : 'Login '}
+          </Typography>
+          <Box component="form" onSubmit={setUser} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
+              autoFocus
+            />
+            {isSignup && (
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="fullname"
+                label="Fullname"
+                name="fullname"
+                autoComplete="fullname"
+                autoFocus
+              />
+            )}
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            {isSignup && (
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="repassword"
+                label="Verify password"
+                type="password"
+                id="repassword"
+                autoComplete="repassword"
+              />
+            )}
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              {isSignup ? 'Sign up' : 'Login '}
+            </Button>
+            <Grid container>
+              <Grid item>
+                <div
+                  variant="body2"
+                  onClick={() => setIsSignup((state) => !state)}
+                >
+                  {isSignup
+                    ? 'Already have an account? Login'
+                    : "Don't have an account? Sign Up"}
+                </div>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
-};
+}
 
 export default LoginPage;
