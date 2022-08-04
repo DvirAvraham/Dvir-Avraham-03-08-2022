@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMsg } from '../store/actions/userActions';
 
-const ChatModal = ({ currChat }) => {
+const Chat = ({ currChat }) => {
   const dispatch = useDispatch();
   const [txt, setTxt] = useState('');
 
@@ -12,24 +12,24 @@ const ChatModal = ({ currChat }) => {
   };
 
   return (
-    <div className="chat">
-      <div className="msgs">
+    <div className="chat flex column">
+      <div className="msgs flex column grow-1">
         {!!currChat?.msgs?.length &&
           currChat.msgs.map((msg, idx) => {
             return <div key={idx}>{msg.txt}</div>;
           })}
       </div>
-      <div className="actions">
+      <div className="actions flex">
         <input
           type="text"
           placeholder="Message..."
           value={txt}
           onChange={(ev) => setTxt(ev.target.value)}
         />
-        <button onClick={handleAddMsg}> {'>'} </button>
+        {/* <button onClick={handleAddMsg}> {'>'} </button> */}
       </div>
     </div>
   );
 };
 
-export default ChatModal;
+export default Chat;

@@ -1,0 +1,18 @@
+.chat {
+  height: 100%;
+  .actions {
+    width: 90%;
+    height: 44px;
+    border: 1px solid #dbdbdb;
+    border-radius: 40px;
+    margin: 20px auto;
+    input {
+      border: 0;
+      border-radius: 40px;
+      margin-inline-start: 25px;
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+}

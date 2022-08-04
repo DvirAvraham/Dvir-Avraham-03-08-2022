@@ -11,7 +11,7 @@ import {
 } from '../store/actions/userActions';
 import FriendList from '../cmps/FriendList';
 import EditUser from '../cmps/EditUser';
-import ChatModal from '../cmps/ChatModal';
+import Chat from '../cmps/Chat';
 
 const MsgApp = () => {
   const dispatch = useDispatch();
@@ -88,7 +88,7 @@ const MsgApp = () => {
         )}
       </section>
       <section className="main-chat">
-        {isChatOpen && <ChatModal currChat={currChat} />}
+        {isChatOpen && <Chat currChat={currChat} />}
       </section>
       {isModalOpen && <EditUser user={userToEdit} saveUser={saveUser} />}
       {/* isAdmin={loggedInUser?.isAdmin} */}
