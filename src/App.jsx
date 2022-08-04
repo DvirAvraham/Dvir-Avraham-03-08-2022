@@ -5,11 +5,16 @@ import { useEffect } from 'react';
 import { socketService } from './services/socket-service';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { MdDarkMode } from 'react-icons/md';
+import { BsFillSunFill } from 'react-icons/bs';
 
+// MdDarkMode;
+// BsFillSunFill
 import {
   loadLoggedInUser,
   setFriends,
   setChat,
+  toggleDarkMode,
 } from './store/actions/userActions';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -17,6 +22,11 @@ const App = () => {
   const dispatch = useDispatch();
 
   const { errorMsg } = useSelector((state) => state.userModule);
+  const { isDark } = useSelector((state) => state.userModule);
+
+  const toggleIsDark = () => {
+    dispatch(toggleDarkMode());
+  };
 
   useEffect(() => {
     if (errorMsg) {
@@ -77,13 +87,26 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <div className={`app  ${isDark ? 'dark' : ''}`}>
+      <div className="toggle-dark">
+        <input
+          type="checkbox"
+          className="checkbox"
+          id="checkbox"
+          onClick={toggleIsDark}
+        />
+        <label htmlFor="checkbox" className="label">
+          <MdDarkMode className="moon" />
+          <BsFillSunFill className="sun" />
+          <div className="ball" />
+        </label>
+      </div>
       <Routes>
         <Route path="/msg" element={<MsgApp />} />
         <Route path="/" element={<LoginPage />} />
       </Routes>
       <ToastContainer />
-    </>
+    </div>
   );
 };
 

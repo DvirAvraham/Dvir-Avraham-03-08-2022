@@ -3,6 +3,9 @@
   cursor: pointer;
   &:hover {
     background-color: rgb(250, 250, 250);
+    .toggle-friend {
+      background-color: rgb(250, 250, 250);
+    }
   }
   &.activ {
     background-color: rgb(219, 219, 219);
@@ -10,12 +13,10 @@
   .actions {
     .toggle-friend {
       border: 0;
-      background-color: #fff;
       font-size: 29px;
       cursor: pointer;
-      // &:hover {
-      // background-color: rgb(235, 216, 216);
-      // }
+      background-color: rgba(250, 250, 250, 0);
+
       &.add {
         color: #2100f6f2;
       }

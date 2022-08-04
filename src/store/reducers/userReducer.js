@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   users: null,
   currChat: null,
   errorMsg: null,
+  isDark: null,
 };
 
 export function userReducer(state = INITIAL_STATE, action) {
@@ -32,6 +33,11 @@ export function userReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         errorMsg: action.errorMsg,
+      };
+    case 'SET_IS_DARK':
+      return {
+        ...state,
+        isDark: action.isDark,
       };
     default:
       return state;

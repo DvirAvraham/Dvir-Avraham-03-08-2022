@@ -204,10 +204,20 @@ export function toggleFriends(id) {
   };
 }
 
+export function toggleDarkMode() {
+  return async (dispatch, getState) => {
+    try {
+      const { isDark } = getState().userModule;
+      dispatch({ type: 'SET_IS_DARK', isDark: !isDark });
+    } catch (err) {
+      dispatch(handleError('Faild switching modes'));
+    }
+  };
+}
+
 function handleError(msg) {
   return async (dispatch) => {
     try {
-      console.log(msg);
       dispatch({ type: 'SET_MSG', errorMsg: msg });
     } catch (err) {
       console.error('Faild in life:', err);
