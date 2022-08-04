@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMsg } from '../store/actions/userActions';
+import { FiSend } from 'react-icons/fi';
 
-const Chat = ({ currChat }) => {
+const Chat = ({ currChat, loggedInUserId }) => {
   const dispatch = useDispatch();
   const [txt, setTxt] = useState('');
 
@@ -16,7 +17,16 @@ const Chat = ({ currChat }) => {
       <div className="msgs flex column grow-1">
         {!!currChat?.msgs?.length &&
           currChat.msgs.map((msg, idx) => {
-            return <div key={idx}>{msg.txt}</div>;
+            return (
+              <div
+                className={`msg ${
+                  msg.createdBy === loggedInUserId ? 'my' : ''
+                }`}
+                key={idx}
+              >
+                {msg.txt}
+              </div>
+            );
           })}
       </div>
       <div className="actions flex">
@@ -26,7 +36,13 @@ const Chat = ({ currChat }) => {
           value={txt}
           onChange={(ev) => setTxt(ev.target.value)}
         />
-        {/* <button onClick={handleAddMsg}> {'>'} </button> */}
+        <button
+          disabled={!txt}
+          className="send flex justify-center align-center"
+          onClick={handleAddMsg}
+        >
+          <FiSend />
+        </button>
       </div>
     </div>
   );

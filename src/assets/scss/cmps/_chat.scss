@@ -1,6 +1,25 @@
 .chat {
   height: 100%;
+  .msgs {
+    padding: 20px 20px 0 20px;
+    overflow-y: scroll;
+    .msg {
+      border-radius: 22px;
+      border: 1px solid #efefef;
+      margin-bottom: 8px;
+      width: fit-content;
+      padding: 1rem;
+      &.my {
+        border: 0;
+        background-color: #eee;
+        text-align: end;
+        display: flex;
+        align-self: flex-end;
+      }
+    }
+  }
   .actions {
+    position: relative;
     width: 90%;
     height: 44px;
     border: 1px solid #dbdbdb;
@@ -10,8 +29,33 @@
       border: 0;
       border-radius: 40px;
       margin-inline-start: 25px;
+      width: 83%;
       &:focus {
         outline: 0;
+      }
+    }
+    .send {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      background-color: rgb(0, 149, 246);
+      color: #fff;
+      font-size: 20px;
+      width: 52px;
+      height: 101%;
+      border-bottom-right-radius: 30px;
+      border-top-right-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      &:disabled {
+        cursor: not-allowed;
+        background-color: rgba(0, 148, 246, 0.652);
+      }
+      svg {
+        margin-inline-start: -5px;
       }
     }
   }
