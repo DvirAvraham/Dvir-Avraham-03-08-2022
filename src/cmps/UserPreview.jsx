@@ -7,7 +7,12 @@ const UserPreview = ({
 }) => {
   return (
     <div className="user-preview flex justify-between">
-      <div>{user.fullname}</div>
+      <div className="flex justify-between">
+        <div>
+          <img src={user.imgUrl} alt="" />
+        </div>
+        <div>{user.fullname} </div>
+      </div>{' '}
       <section className="actions">
         {isAdmin && (
           <button onClick={() => updateUser(user)}>updateUser</button>
