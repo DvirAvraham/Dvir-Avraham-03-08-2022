@@ -1,3 +1,5 @@
+import { AiOutlineUserDelete, AiOutlineUserAdd } from 'react-icons/ai';
+
 const FriendPreview = ({ friend, toggleFriend, setChat, isFriendsList }) => {
   const handleToggleFriend = (ev) => {
     ev.stopPropagation();
@@ -22,8 +24,11 @@ const FriendPreview = ({ friend, toggleFriend, setChat, isFriendsList }) => {
         </div>
       </div>
       <section className="actions flex align-center">
-        <button onClick={handleToggleFriend}>
-          {isFriendsList ? '-' : '+'}
+        <button
+          className={`toggle-friend ${isFriendsList ? 'remove' : 'add'}`}
+          onClick={handleToggleFriend}
+        >
+          {isFriendsList ? <AiOutlineUserDelete /> : <AiOutlineUserAdd />}
         </button>
       </section>
     </div>

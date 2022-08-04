@@ -7,6 +7,23 @@
   &.activ {
     background-color: rgb(219, 219, 219);
   }
+  .actions {
+    .toggle-friend {
+      border: 0;
+      background-color: #fff;
+      font-size: 29px;
+      cursor: pointer;
+      // &:hover {
+      // background-color: rgb(235, 216, 216);
+      // }
+      &.add {
+        color: #2100f6f2;
+      }
+      &.remove {
+        color: #f6003bf2;
+      }
+    }
+  }
   .info {
     color: rgb(38, 38, 38);
     font-weight: 400;
