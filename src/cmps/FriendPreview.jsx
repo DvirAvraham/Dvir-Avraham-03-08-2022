@@ -1,15 +1,24 @@
 const FriendPreview = ({ friend, toggleFriend, setChat }) => {
   return (
-    <div className="friend-preview flex justify-between">
-      <div className="flex justify-between">
-        <div>
+    <div
+      className="user-preview flex justify-between"
+      onClick={() => setChat(friend.chatsIds)}
+    >
+      <div className="info flex justify-between">
+        <div className="img">
           <img src={friend.imgUrl} alt="" />
         </div>
-        <div>{friend.fullname} </div>
+        <div className="details flex column justify-center">
+          <div>{friend.fullname} </div>
+          <div className="msg flex">
+            <div>msg</div>
+            <span>·</span>
+            <div>1 hour ago</div>
+          </div>
+        </div>
       </div>
-      <section className="actions">
+      <section className="actions flex align-center">
         <button onClick={() => toggleFriend(friend._id)}>-</button>
-        <button onClick={() => setChat(friend.chatsIds)}>Massenger</button>
       </section>
     </div>
   );

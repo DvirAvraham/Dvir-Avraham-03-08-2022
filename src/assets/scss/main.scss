@@ -2,23 +2,8 @@
 @import 'basics/base';
 @import 'basics/helpers';
 
+//CMPS
+@import 'cmps/user-preview';
+
 //PAGES
 @import 'pages/msg-app';
-
-.red {
-  color: red;
-}
-.user-preview {
-  background-color: #f5e6e69c;
-  margin: 18px 18px;
-  padding: 12px 10px;
-  border-radius: 5px;
-  width: 52%;
-}
-.friend-preview {
-  background-color: #f5e6e69c;
-  margin: 18px 18px;
-  padding: 12px 10px;
-  border-radius: 5px;
-  width: 52%;
-}

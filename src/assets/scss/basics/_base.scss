@@ -1,13 +1,14 @@
 * {
   box-sizing: border-box;
-  font-family: circular-light, -apple-system, BlinkMacSystemFont, Roboto,
-    Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue,
+    sans-serif;
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
   color: #333;
+  min-height: 100vh;
 }
 
 a {

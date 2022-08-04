@@ -1,0 +1,28 @@
+.user-preview {
+  padding: 8px 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(250, 250, 250);
+  }
+  &.activ {
+    background-color: rgb(219, 219, 219);
+  }
+  .info {
+    color: rgb(38, 38, 38);
+    font-weight: 400;
+    font-size: 14px;
+    .details {
+      .msg {
+        color: rgb(142, 142, 142);
+        span {
+          margin: 0 4px;
+        }
+      }
+    }
+    img {
+      width: 64px;
+      border-radius: 50%;
+      margin-inline-end: 12px;
+    }
+  }
+}

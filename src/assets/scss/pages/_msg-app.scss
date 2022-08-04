@@ -1,5 +1,21 @@
 .msg-app {
-  .title {
-    margin: 20px 0 40px;
+  max-width: 935px;
+  margin: 0 auto;
+  padding: 20px;
+  height: 100%;
+  .list {
+    width: 350px;
+    border-bottom: 1px solid #dbdbdb;
+    border-top: 1px solid #dbdbdb;
+    border-left: 1px solid #dbdbdb;
+    overflow-y: scroll;
+    .toggle {
+      padding: 10px 20px;
+      border-bottom: 1px solid #dbdbdb;
+    }
+  }
+  .main-chat {
+    width: 100%;
+    border: 1px solid #dbdbdb;
   }
 }

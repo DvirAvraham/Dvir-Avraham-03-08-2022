@@ -25,6 +25,7 @@ const MsgApp = () => {
   const [isModalOpen, setIsModalOpen] = useState(null);
   const [isChatOpen, setIsChatOpen] = useState(null);
   const [userToEdit, setUserToEdit] = useState({});
+  const [isFriendsList, setIsFriendsList] = useState(true);
 
   const fetchData = async () => {
     await dispatch(loadLoggedInUser());
@@ -72,33 +73,42 @@ const MsgApp = () => {
   };
 
   return (
-    <div className="msg-app main-layout">
-      <div className="title">
-        {loggedInUser?.fullname} has entered the chat..
-      </div>
-      <section className="flex column justify-between">
-        {isModalOpen && <EditUser user={userToEdit} saveUser={saveUser} />}
-        {userFriends?.length && (
-          <FriendList
-            friends={userFriends}
-            toggleFriend={toggleFriend}
-            setChat={handleSetChat}
-          />
-        )}
-        {users?.length && (
-          <UserList
-            users={usersForDisplay()}
-            deleteUser={deleteUser}
-            updateUser={openModal}
-            isAdmin={loggedInUser?.isAdmin}
-            toggleFriend={toggleFriend}
-          />
+    <div className="msg-app main-layout flex">
+      <section className="list flex column justify-between">
+        <div className="toggle flex justify-between">
+          <button>users</button>
+          <button>friends</button>
+        </div>
+        {isFriendsList ? (
+          <div>
+            {userFriends?.length && (
+              <FriendList
+                friends={userFriends}
+                toggleFriend={toggleFriend}
+                setChat={handleSetChat}
+              />
+            )}{' '}
+          </div>
+        ) : (
+          <div>
+            {users?.length && (
+              <UserList
+                users={usersForDisplay()}
+                deleteUser={deleteUser}
+                updateUser={openModal}
+                isAdmin={loggedInUser?.isAdmin}
+                toggleFriend={toggleFriend}
+              />
+            )}
+          </div>
         )}
       </section>
-      {loggedInUser?.isAdmin && <button onClick={openModal}>add</button>}
+      <section className="main-chat"></section>
       {isChatOpen && (
         <ChatModal setIsChatOpen={setIsChatOpen} currChat={currChat} />
       )}
+      {isModalOpen && <EditUser user={userToEdit} saveUser={saveUser} />}
+      {loggedInUser?.isAdmin && <button onClick={openModal}>add</button>}
     </div>
   );
 };
