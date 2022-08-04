@@ -1,4 +1,8 @@
-const FriendPreview = ({ friend, toggleFriend, setChat }) => {
+const FriendPreview = ({ friend, toggleFriend, setChat, isFriendsList }) => {
+  const handleToggleFriend = (ev) => {
+    ev.stopPropagation();
+    toggleFriend(friend._id);
+  };
   return (
     <div
       className="user-preview flex justify-between"
@@ -18,7 +22,9 @@ const FriendPreview = ({ friend, toggleFriend, setChat }) => {
         </div>
       </div>
       <section className="actions flex align-center">
-        <button onClick={() => toggleFriend(friend._id)}>-</button>
+        <button onClick={handleToggleFriend}>
+          {isFriendsList ? '-' : '+'}
+        </button>
       </section>
     </div>
   );

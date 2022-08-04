@@ -10,7 +10,6 @@ import {
   loadLoggedInUser,
 } from '../store/actions/userActions';
 import FriendList from '../cmps/FriendList';
-import UserList from '../cmps/UserList';
 import EditUser from '../cmps/EditUser';
 import ChatModal from '../cmps/ChatModal';
 
@@ -74,40 +73,27 @@ const MsgApp = () => {
 
   return (
     <div className="msg-app main-layout flex">
-      <section className="list flex column justify-between">
-        <div className="toggle flex justify-between">
-          <button>users</button>
-          <button>friends</button>
+      <section className="list flex column ">
+        <div className="toggle flex justify-around align-center">
+          <div onClick={() => setIsFriendsList(true)}>Friends</div>
+          <div onClick={() => setIsFriendsList(false)}>Users</div>
         </div>
-        {isFriendsList ? (
-          <div>
-            {userFriends?.length && (
-              <FriendList
-                friends={userFriends}
-                toggleFriend={toggleFriend}
-                setChat={handleSetChat}
-              />
-            )}{' '}
-          </div>
-        ) : (
-          <div>
-            {users?.length && (
-              <UserList
-                users={usersForDisplay()}
-                deleteUser={deleteUser}
-                updateUser={openModal}
-                isAdmin={loggedInUser?.isAdmin}
-                toggleFriend={toggleFriend}
-              />
-            )}
-          </div>
+        {userFriends?.length && (
+          <FriendList
+            friends={isFriendsList ? userFriends : usersForDisplay()}
+            toggleFriend={toggleFriend}
+            setChat={handleSetChat}
+            isFriendsList={isFriendsList}
+          />
         )}
       </section>
-      <section className="main-chat"></section>
-      {isChatOpen && (
-        <ChatModal setIsChatOpen={setIsChatOpen} currChat={currChat} />
-      )}
+      <section className="main-chat">
+        {isChatOpen && <ChatModal currChat={currChat} />}
+      </section>
       {isModalOpen && <EditUser user={userToEdit} saveUser={saveUser} />}
+      {/* isAdmin={loggedInUser?.isAdmin} */}
+      {/* updateUser={openModal} */}
+      {/* deleteUser={deleteUser} */}
       {loggedInUser?.isAdmin && <button onClick={openModal}>add</button>}
     </div>
   );

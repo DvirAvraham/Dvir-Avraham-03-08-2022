@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMsg } from '../store/actions/userActions';
 
-const ChatModal = ({ setIsChatOpen, currChat }) => {
+const ChatModal = ({ currChat }) => {
   const dispatch = useDispatch();
   const [txt, setTxt] = useState('');
 
@@ -12,21 +12,22 @@ const ChatModal = ({ setIsChatOpen, currChat }) => {
   };
 
   return (
-    <div>
-      <div>
-        {currChat?.msgs?.length &&
+    <div className="chat">
+      <div className="msgs">
+        {!!currChat?.msgs?.length &&
           currChat.msgs.map((msg, idx) => {
             return <div key={idx}>{msg.txt}</div>;
           })}
       </div>
-      <input
-        type="text"
-        placeholder="ze ze"
-        value={txt}
-        onChange={(ev) => setTxt(ev.target.value)}
-      />
-      <button onClick={handleAddMsg}>Send msg</button>
-      <button onClick={() => setIsChatOpen(false)}>Close</button>
+      <div className="actions">
+        <input
+          type="text"
+          placeholder="Message..."
+          value={txt}
+          onChange={(ev) => setTxt(ev.target.value)}
+        />
+        <button onClick={handleAddMsg}> {'>'} </button>
+      </div>
     </div>
   );
 };
