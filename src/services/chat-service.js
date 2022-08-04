@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const BASE_URL =
   process.env.NODE_ENV !== 'development'
-    ? '/api/auth'
+    ? '/api/chat/'
     : '//localhost:3030/api/chat/';
 
 export const chatService = {

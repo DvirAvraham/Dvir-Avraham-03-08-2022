@@ -4,7 +4,7 @@ import { utilService } from './util-service';
 
 const BASE_URL =
   process.env.NODE_ENV !== 'development'
-    ? '/api/user'
+    ? '/api/user/'
     : '//localhost:3030/api/user/';
 
 export const userService = {

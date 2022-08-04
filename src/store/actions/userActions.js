@@ -16,7 +16,9 @@ export function setLoggedInUser({ user, isSignup }) {
       return true;
     } catch (err) {
       dispatch(
-        handleError(`Err while ${isSignup ? 'signing up' : 'logging in'} ..`)
+        handleError(
+          `Err while ${isSignup ? 'signing up' : 'logging in'} .. : ${err}`
+        )
       );
     }
   };
@@ -35,7 +37,7 @@ export function loadFriends() {
       }
       dispatch({ type: 'SET_FRIENDS', userFriends });
     } catch (err) {
-      dispatch(handleError('Faild loading friends'));
+      dispatch(handleError(`Faild loading friends: ${err}`));
     }
   };
 }
@@ -46,7 +48,7 @@ export function loadUsers() {
       const users = await userService.getUsers();
       dispatch({ type: 'SET_USERS', users });
     } catch (err) {
-      dispatch(handleError('Faild loading users'));
+      dispatch(handleError(`Faild loading users ${err}`));
     }
   };
 }
@@ -59,7 +61,7 @@ export function removeUser(id) {
       const updatedUsers = users.filter((user) => user._id !== id);
       dispatch({ type: 'SET_USERS', users: updatedUsers });
     } catch (err) {
-      dispatch(handleError('Faild removing users'));
+      dispatch(handleError(`Faild removing users: ${err}`));
     }
   };
 }
@@ -75,7 +77,7 @@ export function loadLoggedInUser() {
       const user = await userService.getById(loggedInUserId);
       dispatch({ type: 'SET_USER', loggedInUser: user });
     } catch (err) {
-      dispatch(handleError('Faild loading your user'));
+      dispatch(handleError(`Faild loading your user: ${err}`));
     }
   };
 }
@@ -89,7 +91,7 @@ export function setChat(toChatIds = null, chat = null) {
       const currChat = await chatService.getById(chatId);
       dispatch({ type: 'SET_CHAT', currChat });
     } catch (err) {
-      dispatch(handleError('Faild setting chat'));
+      dispatch(handleError(`Faild setting chat: ${err}`));
     }
   };
 }
@@ -114,12 +116,12 @@ export function addMsg(txt) {
       });
       dispatch({ type: 'SET_CHAT', currChat: chatCopy });
     } catch (err) {
-      dispatch(handleError('Faild adding a msg'));
+      dispatch(handleError(`Faild to add a msg ${err}`));
     }
   };
 }
 
-export function setFriends(friend) {
+export function setFriend(friend) {
   return async (dispatch, getState) => {
     try {
       const { loggedInUser } = getState().userModule;
@@ -133,7 +135,7 @@ export function setFriends(friend) {
       }
       dispatch({ type: 'SET_FRIENDS', userFriends: userFriendsCopy });
     } catch (err) {
-      dispatch(handleError('Faild setting friends'));
+      dispatch(handleError(`Faild setting friends: ${err}`));
     }
   };
 }
@@ -152,7 +154,7 @@ export function setUser(user) {
       }
       dispatch({ type: 'SET_USERS', users: usersCopy });
     } catch (err) {
-      dispatch(handleError('Faild setting user'));
+      dispatch(handleError(`Faild setting user: ${err}`));
     }
   };
 }
@@ -199,7 +201,7 @@ export function toggleFriends(id) {
       dispatch({ type: 'SET_USER', loggedInUser: userCopy });
       dispatch({ type: 'SET_FRIENDS', userFriends: userFriendsCopy });
     } catch (err) {
-      dispatch(handleError('Faild toggel friends:'));
+      dispatch(handleError(`Faild toggel friends:${err}`));
     }
   };
 }
@@ -210,7 +212,7 @@ export function toggleDarkMode() {
       const { isDark } = getState().userModule;
       dispatch({ type: 'SET_IS_DARK', isDark: !isDark });
     } catch (err) {
-      dispatch(handleError('Faild switching modes'));
+      dispatch(handleError(`Faild switching modes:${err}`));
     }
   };
 }

@@ -12,9 +12,10 @@ import { BsFillSunFill } from 'react-icons/bs';
 // BsFillSunFill
 import {
   loadLoggedInUser,
-  setFriends,
+  setFriend,
   setChat,
   toggleDarkMode,
+  loadFriends,
 } from './store/actions/userActions';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -53,7 +54,7 @@ const App = () => {
       progress: undefined,
     });
     dispatch(loadLoggedInUser());
-    dispatch(setFriends(friend));
+    dispatch(setFriend(friend));
   };
 
   const updateChat = ({ msg, chat }) => {
@@ -74,9 +75,9 @@ const App = () => {
     socketService.off('load-user');
     socketService.off('msg-notify');
     socketService.on('toggeled-friends', updateFriends);
-    socketService.on('load-user', ({ friend }) => {
-      dispatch(loadLoggedInUser());
-      dispatch(setFriends(friend));
+    socketService.on('load-user', async () => {
+      await dispatch(loadLoggedInUser());
+      dispatch(loadFriends());
     });
     socketService.on('msg-notify', updateChat);
     return () => {

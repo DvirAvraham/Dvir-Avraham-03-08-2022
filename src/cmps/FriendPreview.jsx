@@ -11,6 +11,7 @@ const FriendPreview = ({
     ev.stopPropagation();
     toggleFriend(friend._id);
   };
+
   return (
     <div
       className={`user-preview flex justify-between${

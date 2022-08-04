@@ -41,9 +41,10 @@ const MsgApp = () => {
   }, []);
 
   useEffect(() => {
+    let activUser;
     if (!currChat?.members) setActivChatUserId('');
     else {
-      const activUser = currChat.members.find(
+      activUser = currChat.members.find(
         (member) => member._id !== loggedInUser._id
       );
       if (activUser) setActivChatUserId(activUser._id);
@@ -54,7 +55,7 @@ const MsgApp = () => {
     return users.filter(
       (user) =>
         user._id !== loggedInUser?._id &&
-        !loggedInUser?.friendsIds.includes(user._id)
+        !loggedInUser?.friendsIds?.includes(user._id)
     );
   };
 
