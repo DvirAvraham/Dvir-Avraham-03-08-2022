@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMsg } from '../store/actions/userActions';
 import { FiSend } from 'react-icons/fi';
+import Time from 'react-time';
 
 const Chat = ({ currChat, loggedInUserId }) => {
   const elScroll = useRef(null);
@@ -44,12 +45,13 @@ const Chat = ({ currChat, loggedInUserId }) => {
           currChat.msgs.map((msg, idx) => {
             return (
               <div
-                className={`msg ${
+                className={`flex justify-between msg ${
                   msg.createdBy === loggedInUserId ? 'my' : ''
-                }`}
+                } `}
                 key={idx}
               >
-                {msg.txt}
+                <div> {msg.txt} </div>
+                <Time className="time" value={msg.createdAt} format="HH:mm" />
               </div>
             );
           })}

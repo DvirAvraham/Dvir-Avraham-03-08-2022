@@ -25,6 +25,7 @@ const MsgApp = () => {
   const [isChatOpen, setIsChatOpen] = useState(null);
   const [userToEdit, setUserToEdit] = useState({});
   const [isFriendsList, setIsFriendsList] = useState(true);
+  const [activChatUserId, setActivChatUserId] = useState('');
 
   const fetchData = async () => {
     await dispatch(loadLoggedInUser());
@@ -38,6 +39,16 @@ const MsgApp = () => {
     fetchData();
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (!currChat?.members) setActivChatUserId('');
+    else {
+      const activUser = currChat.members.find(
+        (member) => member._id !== loggedInUser._id
+      );
+      if (activUser) setActivChatUserId(activUser._id);
+    }
+  }, [currChat]);
 
   const usersForDisplay = () => {
     return users.filter(
@@ -84,6 +95,7 @@ const MsgApp = () => {
             toggleFriend={toggleFriend}
             setChat={handleSetChat}
             isFriendsList={isFriendsList}
+            activChatUserId={activChatUserId}
           />
         )}
       </section>

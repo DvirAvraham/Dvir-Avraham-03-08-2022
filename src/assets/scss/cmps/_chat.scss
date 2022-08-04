@@ -9,12 +9,19 @@
       margin-bottom: 8px;
       width: fit-content;
       padding: 1rem;
+      .time {
+        font-size: 10px;
+        align-items: inherit;
+        align-self: end;
+        margin-inline-start: 7px;
+      }
       &.my {
         border: 0;
         background-color: #eee;
         text-align: end;
         display: flex;
         align-self: flex-end;
+        direction: rtl;
       }
     }
   }
