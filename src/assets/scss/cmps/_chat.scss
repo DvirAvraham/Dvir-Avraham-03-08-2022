@@ -21,10 +21,11 @@
   .actions {
     position: relative;
     width: 90%;
-    height: 44px;
+    padding: 13px;
     border: 1px solid #dbdbdb;
     border-radius: 40px;
     margin: 20px auto;
+    z-index: 5;
     input {
       border: 0;
       border-radius: 40px;
@@ -59,4 +60,8 @@
       }
     }
   }
+}
+
+.ref {
+  padding-bottom: 3px;
 }

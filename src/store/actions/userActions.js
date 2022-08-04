@@ -123,7 +123,6 @@ export function addMsg(txt) {
 export function setFriends(friend) {
   return async (dispatch, getState) => {
     try {
-      console.log('friend', friend);
       const { loggedInUser } = getState().userModule;
       const { userFriends } = getState().userModule;
       let userFriendsCopy = JSON.parse(JSON.stringify(userFriends));

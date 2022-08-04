@@ -67,7 +67,7 @@ const MsgApp = () => {
   };
 
   const handleSetChat = (friendChatsIds) => {
-    setIsChatOpen((state) => !state);
+    setIsChatOpen(true);
     dispatch(setChat(friendChatsIds, null));
   };
 
@@ -78,7 +78,7 @@ const MsgApp = () => {
           <div onClick={() => setIsFriendsList(true)}>Friends</div>
           <div onClick={() => setIsFriendsList(false)}>Users</div>
         </div>
-        {userFriends?.length && (
+        {(userFriends?.length || users?.length) && (
           <FriendList
             friends={isFriendsList ? userFriends : usersForDisplay()}
             toggleFriend={toggleFriend}
