@@ -15,9 +15,8 @@ export function setLoggedInUser({ user, isSignup }) {
       dispatch({ type: 'SET_USER', loggedInUser });
       return true;
     } catch (err) {
-      console.error(
-        `Err while ${isSignup ? 'signing up' : 'logging in'} ..`,
-        err
+      dispatch(
+        handleError(`Err while ${isSignup ? 'signing up' : 'logging in'} ..`)
       );
     }
   };
@@ -36,7 +35,7 @@ export function loadFriends() {
       }
       dispatch({ type: 'SET_FRIENDS', userFriends });
     } catch (err) {
-      console.error('Faild loading friends:', err);
+      dispatch(handleError('Faild loading friends'));
     }
   };
 }
@@ -47,7 +46,7 @@ export function loadUsers() {
       const users = await userService.getUsers();
       dispatch({ type: 'SET_USERS', users });
     } catch (err) {
-      console.error('Faild loading users:', err);
+      dispatch(handleError('Faild loading users'));
     }
   };
 }
@@ -60,7 +59,7 @@ export function removeUser(id) {
       const updatedUsers = users.filter((user) => user._id !== id);
       dispatch({ type: 'SET_USERS', users: updatedUsers });
     } catch (err) {
-      console.error('Faild removing users:', err);
+      dispatch(handleError('Faild removing users'));
     }
   };
 }
@@ -76,7 +75,7 @@ export function loadLoggedInUser() {
       const user = await userService.getById(loggedInUserId);
       dispatch({ type: 'SET_USER', loggedInUser: user });
     } catch (err) {
-      console.error('Faild loading your user:', err);
+      dispatch(handleError('Faild loading your user'));
     }
   };
 }
@@ -90,7 +89,7 @@ export function setChat(toChatIds = null, chat = null) {
       const currChat = await chatService.getById(chatId);
       dispatch({ type: 'SET_CHAT', currChat });
     } catch (err) {
-      console.error('Faild setting chat:', err);
+      dispatch(handleError('Faild setting chat'));
     }
   };
 }
@@ -115,7 +114,7 @@ export function addMsg(txt) {
       });
       dispatch({ type: 'SET_CHAT', currChat: chatCopy });
     } catch (err) {
-      console.error('Faild adding a msg:', err);
+      dispatch(handleError('Faild adding a msg'));
     }
   };
 }
@@ -134,7 +133,7 @@ export function setFriends(friend) {
       }
       dispatch({ type: 'SET_FRIENDS', userFriends: userFriendsCopy });
     } catch (err) {
-      console.error('Faild setting friends:', err);
+      dispatch(handleError('Faild setting friends'));
     }
   };
 }
@@ -153,7 +152,7 @@ export function setUser(user) {
       }
       dispatch({ type: 'SET_USERS', users: usersCopy });
     } catch (err) {
-      console.error('Faild setting user:', err);
+      dispatch(handleError('Faild setting user'));
     }
   };
 }
@@ -200,7 +199,18 @@ export function toggleFriends(id) {
       dispatch({ type: 'SET_USER', loggedInUser: userCopy });
       dispatch({ type: 'SET_FRIENDS', userFriends: userFriendsCopy });
     } catch (err) {
-      console.error('Faild toggel friends:', err);
+      dispatch(handleError('Faild toggel friends:'));
+    }
+  };
+}
+
+function handleError(msg) {
+  return async (dispatch) => {
+    try {
+      console.log(msg);
+      dispatch({ type: 'SET_MSG', errorMsg: msg });
+    } catch (err) {
+      console.error('Faild in life:', err);
     }
   };
 }

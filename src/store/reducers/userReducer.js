@@ -3,6 +3,7 @@ const INITIAL_STATE = {
   userFriends: null,
   users: null,
   currChat: null,
+  errorMsg: null,
 };
 
 export function userReducer(state = INITIAL_STATE, action) {
@@ -26,6 +27,11 @@ export function userReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         currChat: action.currChat,
+      };
+    case 'SET_MSG':
+      return {
+        ...state,
+        errorMsg: action.errorMsg,
       };
     default:
       return state;

@@ -11,10 +11,26 @@ import {
   setFriends,
   setChat,
 } from './store/actions/userActions';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const App = () => {
   const dispatch = useDispatch();
+
+  const { errorMsg } = useSelector((state) => state.userModule);
+
+  useEffect(() => {
+    if (errorMsg) {
+      toast.error(errorMsg, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  }, [errorMsg]);
 
   const updateFriends = async ({ msg, friend }) => {
     toast.info(msg, {
