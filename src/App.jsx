@@ -3,6 +3,9 @@ import MsgApp from './pages/MsgApp';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 import { socketService } from './services/socket-service';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
   loadLoggedInUser,
   setFriends,
@@ -14,13 +17,29 @@ const App = () => {
   const dispatch = useDispatch();
 
   const updateFriends = async ({ msg, friend }) => {
-    console.log(msg);
+    toast.info(msg, {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     dispatch(loadLoggedInUser());
     dispatch(setFriends(friend));
   };
 
   const updateChat = ({ msg, chat }) => {
-    console.log(msg);
+    toast.success(msg, {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     dispatch(setChat(null, chat));
   };
 
@@ -42,10 +61,13 @@ const App = () => {
   }, []);
 
   return (
-    <Routes>
-      <Route path="/msg" element={<MsgApp />} />
-      <Route path="/" element={<LoginPage />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/msg" element={<MsgApp />} />
+        <Route path="/" element={<LoginPage />} />
+      </Routes>
+      <ToastContainer />
+    </>
   );
 };
 

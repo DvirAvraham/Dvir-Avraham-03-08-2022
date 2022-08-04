@@ -87,11 +87,15 @@ const MsgApp = () => {
           />
         )}
       </section>
-      <section className="main-chat">
-        {isChatOpen && (
-          <Chat currChat={currChat} loggedInUserId={loggedInUser._id} />
-        )}
-      </section>
+      {isFriendsList ? (
+        <div className="main-chat">
+          {isChatOpen && (
+            <Chat currChat={currChat} loggedInUserId={loggedInUser._id} />
+          )}
+        </div>
+      ) : (
+        <div className="mashu"></div>
+      )}
       {isModalOpen && <EditUser user={userToEdit} saveUser={saveUser} />}
       {/* isAdmin={loggedInUser?.isAdmin} */}
       {/* updateUser={openModal} */}
