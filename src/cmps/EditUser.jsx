@@ -34,7 +34,6 @@ const EditUser = ({ user, saveUser }) => {
         password: data.get('password'),
       };
     }
-    console.log('userToSave', userToSave);
     if (userToSave.password != data.get('repassword') && !user?._id) return;
     saveUser(userToSave);
   };

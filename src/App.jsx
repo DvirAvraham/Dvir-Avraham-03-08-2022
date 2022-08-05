@@ -15,6 +15,7 @@ import {
   toggleDarkMode,
   loadFriends,
   logout,
+  loadUsers,
 } from './store/actions/userActions';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -80,6 +81,8 @@ const App = () => {
     socketService.off('toggeled-friends');
     socketService.off('load-user');
     socketService.off('msg-notify');
+    socketService.off('load-users');
+    socketService.on('load-users', () => dispatch(loadUsers()));
     socketService.on('toggeled-friends', updateFriends);
     socketService.on('load-user', async () => {
       await dispatch(loadLoggedInUser());
@@ -87,6 +90,7 @@ const App = () => {
     });
     socketService.on('msg-notify', updateChat);
     return () => {
+      socketService.off('load-users');
       socketService.off('toggeled-friends');
       socketService.off('load-user');
       socketService.off('msg-notify');

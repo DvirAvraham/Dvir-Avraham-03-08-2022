@@ -29,9 +29,7 @@ const UserPreview = ({
   };
 
   const handleSetChat = () => {
-    console.log(user);
     if (isAdmin) return;
-
     setChat(user);
   };
 

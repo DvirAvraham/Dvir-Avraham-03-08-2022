@@ -12,13 +12,14 @@ export function setLoggedInUser({ user, isSignup }) {
         : await authService.login(user);
       utilService.save('user_db', loggedInUser);
       socketService.emit('set-user-socket', loggedInUser._id);
+      if (isSignup) {
+        socketService.emit('sign-up', { userId: loggedInUser?._id });
+      }
       dispatch({ type: 'SET_USER', loggedInUser });
       return true;
     } catch (err) {
       dispatch(
-        handleError(
-          `Err while ${isSignup ? 'signing up' : 'logging in'} .. : ${err}`
-        )
+        handleError(`Error while ${isSignup ? 'signing up' : 'logging in'} ..`)
       );
     }
   };
@@ -37,7 +38,7 @@ export function loadFriends() {
       }
       dispatch({ type: 'SET_FRIENDS', userFriends });
     } catch (err) {
-      dispatch(handleError(`Faild loading friends: ${err}`));
+      dispatch(handleError('Error while loading friends'));
     }
   };
 }
@@ -49,7 +50,7 @@ export function logout() {
       utilService.save('user_db', '');
       dispatch({ type: 'SET_USER', loggedInUser: null });
     } catch (err) {
-      dispatch(handleError(`Faild logout`));
+      dispatch(handleError('Error while try to logout'));
     }
   };
 }
@@ -59,7 +60,7 @@ export function loadUsers() {
       const users = await userService.getUsers();
       dispatch({ type: 'SET_USERS', users });
     } catch (err) {
-      dispatch(handleError(`Faild loading users ${err}`));
+      dispatch(handleError('Error while loading users'));
     }
   };
 }
@@ -72,7 +73,7 @@ export function removeUser(id) {
       const updatedUsers = users.filter((user) => user._id !== id);
       dispatch({ type: 'SET_USERS', users: updatedUsers });
     } catch (err) {
-      dispatch(handleError(`Faild removing users: ${err}`));
+      dispatch(handleError('Error while removing user'));
     }
   };
 }
@@ -88,7 +89,7 @@ export function loadLoggedInUser() {
       const user = await userService.getById(loggedInUserId);
       dispatch({ type: 'SET_USER', loggedInUser: user });
     } catch (err) {
-      dispatch(handleError(`Faild loading your user: ${err}`));
+      dispatch(handleError('Error while loading your account'));
     }
   };
 }
@@ -102,7 +103,7 @@ export function setChat(toChatIds = null, chat = null) {
       const currChat = await chatService.getById(chatId);
       dispatch({ type: 'SET_CHAT', currChat });
     } catch (err) {
-      dispatch(handleError(`Faild setting chat: ${err}`));
+      dispatch(handleError('Error while setting chat'));
     }
   };
 }
@@ -127,7 +128,7 @@ export function addMsg(txt) {
       });
       dispatch({ type: 'SET_CHAT', currChat: chatCopy });
     } catch (err) {
-      dispatch(handleError(`Faild to add a msg ${err}`));
+      dispatch(handleError('Error while sending a msg'));
     }
   };
 }
@@ -146,7 +147,7 @@ export function setFriend(friend) {
       }
       dispatch({ type: 'SET_FRIENDS', userFriends: userFriendsCopy });
     } catch (err) {
-      dispatch(handleError(`Faild setting friends: ${err}`));
+      dispatch(handleError('Error while setting friends'));
     }
   };
 }
@@ -165,7 +166,7 @@ export function setUser(user) {
       }
       dispatch({ type: 'SET_USERS', users: usersCopy });
     } catch (err) {
-      dispatch(handleError(`Faild setting user: ${err}`));
+      dispatch(handleError(`Error while setting user: ${user.fullname}`));
     }
   };
 }
@@ -212,7 +213,7 @@ export function toggleFriends(id) {
       dispatch({ type: 'SET_USER', loggedInUser: userCopy });
       dispatch({ type: 'SET_FRIENDS', userFriends: userFriendsCopy });
     } catch (err) {
-      dispatch(handleError(`Faild toggel friends:${err}`));
+      dispatch(handleError('Error while toggel friends'));
     }
   };
 }
@@ -223,7 +224,7 @@ export function toggleDarkMode() {
       const { isDark } = getState().userModule;
       dispatch({ type: 'SET_IS_DARK', isDark: !isDark });
     } catch (err) {
-      dispatch(handleError(`Faild switching modes:${err}`));
+      dispatch(handleError('Error while switching modes'));
     }
   };
 }
@@ -233,7 +234,7 @@ export function handleError(msg) {
     try {
       dispatch({ type: 'SET_MSG', errorMsg: msg });
     } catch (err) {
-      console.error('Faild in life:', err);
+      console.error(`Fatal error ${err}`);
     }
   };
 }
