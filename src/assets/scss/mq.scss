@@ -1,0 +1,76 @@
+@media (max-width: 600px) {
+  .msg-app {
+    padding: 0;
+
+    .list {
+      border-bottom: 1px solid #dbdbdb;
+      border-top: 1px solid #dbdbdb;
+      width: 100vw;
+      border-left: 1px solid #dbdbdb;
+      position: absolute;
+      height: 100vh;
+      background-color: #fff;
+      z-index: 10;
+    }
+    .main-chat {
+      width: 100%;
+      border: 1px solid #dbdbdb;
+      background-color: #fff;
+      position: absolute;
+      width: 100vw;
+      height: 84vh;
+      &.activ {
+        z-index: 10;
+      }
+    }
+  }
+
+  .edit-user {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    background-color: #fff;
+    padding: 14px 13px;
+    transform: translate(-50%, -50%);
+    box-shadow: 6px 5px 15px 5px rgb(0 0 0 / 37%);
+    z-index: 10;
+    width: 421px;
+    padding-top: 33px;
+    width: 100vw;
+  }
+  .close-chat {
+    font-size: 26px;
+    color: #f60d45;
+    padding-right: 20px;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 600px) {
+  .close-chat {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .disabled {
+    display: none;
+  }
+}
+@media (min-width: 800px) {
+  .close-chat {
+    display: none;
+  }
+  .edit-user {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    background-color: #fff;
+    padding: 14px 13px;
+    transform: translate(-50%, -50%);
+    box-shadow: 6px 5px 15px 5px rgb(0 0 0 / 37%);
+    z-index: 10;
+    width: 421px;
+    padding-top: 33px;
+  }
+}

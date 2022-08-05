@@ -10,6 +10,7 @@ import {
 import UserList from '../cmps/UserList';
 import Chat from '../cmps/Chat';
 import ChatFiller from '../cmps/ChatFiller';
+import { AiFillCloseCircle } from 'react-icons/ai';
 
 const MsgApp = () => {
   const dispatch = useDispatch();
@@ -83,19 +84,28 @@ const MsgApp = () => {
               toggleFriend={toggleFriend}
               setChat={handleSetChat}
               isFriendsList={isFriendsList}
-              activChatUserId={activChatUser._id}
+              activChatUserId={activChatUser?._id}
             />
           )}
         </section>
         {isFriendsList ? (
-          <div className="main-chat">
+          <div className={`main-chat ${activChatUser ? 'activ' : ''} `}>
             {isChatOpen ? (
               <>
                 <div className="chat-header flex align-center">
                   <div className="img">
-                    <img src={activChatUser.imgUrl} alt="" />
+                    <img src={activChatUser?.imgUrl} alt="" />
                   </div>
-                  <div className="user-name">{activChatUser.fullname}</div>
+                  <div className="user-name">{activChatUser?.fullname}</div>
+                  <div
+                    className="close-chat"
+                    onClick={() => {
+                      setActivChatUser(null);
+                      setIsChatOpen(null);
+                    }}
+                  >
+                    <AiFillCloseCircle />
+                  </div>
                 </div>
                 <Chat
                   currChat={currChat}

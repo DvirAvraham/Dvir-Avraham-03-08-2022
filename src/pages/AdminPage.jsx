@@ -36,7 +36,7 @@ const AdminPage = () => {
     dispatch(setUser(updatedUser));
   };
   return (
-    <div className="admin-page">
+    <div className="admin-page main-layout">
       {loggedInUser?.isAdmin && (
         <div className={`container main-layout ${isModalOpen && 'blur'}`}>
           <div className="title">Admin, welcome back!</div>

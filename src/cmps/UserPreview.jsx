@@ -52,7 +52,7 @@ const UserPreview = ({
         <div className="details flex column justify-center">
           <div>{user.fullname} </div>
           {isFriendsList && (
-            <div className="msg flex">
+            <div className="msg disabled flex ">
               <div>msg</div>
               <span>·</span>
               <div>1 hour ago</div>
