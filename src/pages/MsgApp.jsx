@@ -31,11 +31,19 @@ const MsgApp = () => {
     dispatch(loadUsers());
   };
 
+  const handleCloseChat = () => {
+    setActivChatUser(null);
+    setIsChatOpen(null);
+  };
+
   useEffect(() => {
     // const failed = await dispatch(loadLoggedInUser());
     // if (failed) navigate('/');
     fetchData();
     // eslint-disable-next-line
+    return () => {
+      handleCloseChat();
+    };
   }, []);
 
   useEffect(() => {
@@ -97,13 +105,7 @@ const MsgApp = () => {
                     <img src={activChatUser?.imgUrl} alt="" />
                   </div>
                   <div className="user-name">{activChatUser?.fullname}</div>
-                  <div
-                    className="close-chat"
-                    onClick={() => {
-                      setActivChatUser(null);
-                      setIsChatOpen(null);
-                    }}
-                  >
+                  <div className="close-chat" onClick={handleCloseChat}>
                     <AiFillCloseCircle />
                   </div>
                 </div>

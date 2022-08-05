@@ -1,4 +1,16 @@
 @media (max-width: 600px) {
+  .greet-title {
+    margin-top: 20px;
+    padding: 0 20px;
+    font-size: 24px;
+    margin-bottom: 14px;
+  }
+  .admin-page .container .admin-users {
+    border: 1px solid #dbdbdb;
+    height: 72vh;
+    margin-top: 20px;
+    width: 89vw;
+  }
   .msg-app {
     padding: 0;
 
@@ -19,8 +31,9 @@
       position: absolute;
       width: 100vw;
       height: 84vh;
+      z-index: 0;
       &.activ {
-        z-index: 10;
+        z-index: 15;
       }
     }
   }
@@ -47,6 +60,17 @@
 }
 
 @media (min-width: 600px) {
+  .greet-title {
+    margin-top: 20px;
+    padding: 0 20px;
+    font-size: 24px;
+  }
+  .admin-page .container .admin-users {
+    border: 1px solid #dbdbdb;
+    height: 72vh;
+    margin-top: 20px;
+    width: 392px;
+  }
   .close-chat {
     display: none;
   }
