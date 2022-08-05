@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeUser, setUser, loadUsers } from '../store/actions/userActions';
 import UserList from '../cmps/UserList';
+import adminBgImg from '../assets/svgs/admin-bgImg.svg';
 
 const AdminPage = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ const AdminPage = () => {
           <div className="title">Admin, welcome back!</div>
           <div className="admin-users">
             <div className="list-title flex justify-center align-center">
+              <img className="settings" src={adminBgImg} alt="" />
               All users
             </div>
             <UserList

@@ -1,6 +1,7 @@
 .admin-page {
   padding: 0 20px;
   .container {
+    position: relative;
     .admin-users {
       border: 1px solid #dbdbdb;
       height: 72vh;
@@ -20,7 +21,7 @@
       box-shadow: 4px 4px 12px 0px rgb(0 0 0 / 37%);
       position: absolute;
       bottom: 66px;
-      right: 87px;
+      right: 0;
       background-color: #9c27b0;
       padding: 12px 23px;
       border-radius: 5px;

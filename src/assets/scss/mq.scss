@@ -77,11 +77,21 @@
 }
 
 @media (max-width: 800px) {
+  .settings {
+    display: none;
+  }
   .disabled {
     display: none;
   }
 }
 @media (min-width: 800px) {
+  .settings {
+    position: absolute;
+    width: 300px;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+  }
   .close-chat {
     display: none;
   }
