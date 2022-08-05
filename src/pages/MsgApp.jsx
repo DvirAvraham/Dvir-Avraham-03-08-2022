@@ -67,7 +67,7 @@ const MsgApp = () => {
   return (
     <div>
       <div className="greet-title main-layout">
-        {loggedInUser.fullname} has entered the chat...
+        {loggedInUser?.fullname} has entered the chat...
       </div>
 
       <div className="msg-app main-layout flex">
