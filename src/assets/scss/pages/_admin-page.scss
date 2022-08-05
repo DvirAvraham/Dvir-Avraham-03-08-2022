@@ -16,14 +16,16 @@
       font-size: 28px;
     }
     .create {
+      box-shadow: 4px 4px 12px 0px rgb(0 0 0 / 37%);
       position: absolute;
       bottom: 66px;
       right: 87px;
-      background-color: #87e619;
-      padding: 10px 38px;
+      background-color: #9c27b0;
+      padding: 12px 23px;
       border-radius: 5px;
-      font-weight: bold;
       cursor: pointer;
+      font-size: 15px;
+      color: #fff;
     }
   }
 }

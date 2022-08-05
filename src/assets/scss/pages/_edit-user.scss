@@ -2,13 +2,13 @@
   position: absolute;
   top: 48%;
   left: 50%;
-  background-color: #dbdbdb;
-  padding: 14px 36px;
+  background-color: #fff;
+  padding: 14px 13px;
   transform: translate(-50%, -50%);
-  box-shadow: aliceblue;
   box-shadow: 6px 5px 15px 5px rgb(0 0 0 / 37%);
   z-index: 10;
   width: 421px;
+  padding-top: 33px;
   form {
     gap: 20px;
   }
@@ -18,15 +18,15 @@
   font-weight: 400;
   font-size: 1.5rem;
   line-height: 1.334;
-  margin-top: 9px;
-  margin-bottom: -7px;
+  margin-top: 1px;
+  margin-bottom: -51px;
 }
 .cover {
   position: absolute;
   z-index: 5;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(61 52 52 / 7%);
+  background-color: rgb(219 219 219 / 62%);
   top: 0;
   cursor: pointer;
 }

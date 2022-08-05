@@ -9,6 +9,7 @@ import {
 } from '../store/actions/userActions';
 import UserList from '../cmps/UserList';
 import Chat from '../cmps/Chat';
+import ChatFiller from '../cmps/ChatFiller';
 
 const MsgApp = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const MsgApp = () => {
 
   const [isChatOpen, setIsChatOpen] = useState(null);
   const [isFriendsList, setIsFriendsList] = useState(true);
-  const [activChatUserId, setActivChatUserId] = useState('');
+  const [activChatUser, setActivChatUser] = useState('');
 
   const fetchData = async () => {
     await dispatch(loadLoggedInUser());
@@ -37,12 +38,12 @@ const MsgApp = () => {
 
   useEffect(() => {
     let activUser;
-    if (!currChat?.members) setActivChatUserId('');
+    if (!currChat?.members) setActivChatUser('');
     else {
       activUser = currChat.members.find(
         (member) => member._id !== loggedInUser._id
       );
-      if (activUser) setActivChatUserId(activUser._id);
+      if (activUser) setActivChatUser(activUser);
     }
   }, [currChat]);
 
@@ -76,18 +77,28 @@ const MsgApp = () => {
             toggleFriend={toggleFriend}
             setChat={handleSetChat}
             isFriendsList={isFriendsList}
-            activChatUserId={activChatUserId}
+            activChatUserId={activChatUser._id}
           />
         )}
       </section>
       {isFriendsList ? (
         <div className="main-chat">
-          {isChatOpen && (
-            <Chat currChat={currChat} loggedInUserId={loggedInUser._id} />
+          {isChatOpen ? (
+            <>
+              <div className="chat-header flex align-center">
+                <div className="img">
+                  <img src={activChatUser.imgUrl} alt="" />
+                </div>
+                <div className="user-name">{activChatUser.fullname}</div>
+              </div>
+              <Chat currChat={currChat} loggedInUserId={loggedInUser._id} />
+            </>
+          ) : (
+            <ChatFiller />
           )}
         </div>
       ) : (
-        <div className="mashu"></div>
+        <ChatFiller />
       )}
     </div>
   );
