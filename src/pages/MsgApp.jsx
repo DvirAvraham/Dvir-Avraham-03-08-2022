@@ -65,41 +65,47 @@ const MsgApp = () => {
   };
 
   return (
-    <div className="msg-app main-layout flex">
-      <section className="list flex column ">
-        <div className="toggle flex justify-around align-center">
-          <div onClick={() => setIsFriendsList(true)}>Friends</div>
-          <div onClick={() => setIsFriendsList(false)}>Users</div>
-        </div>
-        {(userFriends?.length || users?.length) && (
-          <UserList
-            users={isFriendsList ? userFriends : usersForDisplay()}
-            toggleFriend={toggleFriend}
-            setChat={handleSetChat}
-            isFriendsList={isFriendsList}
-            activChatUserId={activChatUser._id}
-          />
-        )}
-      </section>
-      {isFriendsList ? (
-        <div className="main-chat">
-          {isChatOpen ? (
-            <>
-              <div className="chat-header flex align-center">
-                <div className="img">
-                  <img src={activChatUser.imgUrl} alt="" />
-                </div>
-                <div className="user-name">{activChatUser.fullname}</div>
-              </div>
-              <Chat currChat={currChat} loggedInUserId={loggedInUser._id} />
-            </>
-          ) : (
-            <ChatFiller />
+    <div>
+      <div className="greet-title main-layout">
+        {loggedInUser.fullname} has entered the chat...
+      </div>
+
+      <div className="msg-app main-layout flex">
+        <section className="list flex column ">
+          <div className="toggle flex justify-around align-center">
+            <div onClick={() => setIsFriendsList(true)}>Friends</div>
+            <div onClick={() => setIsFriendsList(false)}>Users</div>
+          </div>
+          {(userFriends?.length || users?.length) && (
+            <UserList
+              users={isFriendsList ? userFriends : usersForDisplay()}
+              toggleFriend={toggleFriend}
+              setChat={handleSetChat}
+              isFriendsList={isFriendsList}
+              activChatUserId={activChatUser._id}
+            />
           )}
-        </div>
-      ) : (
-        <ChatFiller />
-      )}
+        </section>
+        {isFriendsList ? (
+          <div className="main-chat">
+            {isChatOpen ? (
+              <>
+                <div className="chat-header flex align-center">
+                  <div className="img">
+                    <img src={activChatUser.imgUrl} alt="" />
+                  </div>
+                  <div className="user-name">{activChatUser.fullname}</div>
+                </div>
+                <Chat currChat={currChat} loggedInUserId={loggedInUser._id} />
+              </>
+            ) : (
+              <ChatFiller />
+            )}
+          </div>
+        ) : (
+          <ChatFiller />
+        )}
+      </div>
     </div>
   );
 };
