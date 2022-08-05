@@ -3,7 +3,7 @@ import { BsFillSunFill } from 'react-icons/bs';
 import { FiLogOut } from 'react-icons/fi';
 import { GrUserAdmin } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
-import logo from '../assets/imgs/logo.jpg';
+import logo from '../assets/imgs/logo.png';
 
 const MainHeader = ({ toggleIsDark, loggedInUser }) => {
   return (

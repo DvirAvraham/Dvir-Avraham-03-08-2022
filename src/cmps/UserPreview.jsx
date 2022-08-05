@@ -15,6 +15,21 @@ const UserPreview = ({
   deleteUser,
   isAdmin,
 }) => {
+  const handelDeleteUser = (ev) => {
+    ev.stopPropagation();
+    deleteUser(user._id);
+  };
+
+  const handelUpdateUser = (ev) => {
+    ev.stopPropagation();
+    updateUser(user);
+  };
+
+  const handleSetChat = () => {
+    if (isAdmin) return;
+    setChat(user.chatsIds);
+  };
+
   const handleToggleFriend = (ev) => {
     ev.stopPropagation();
     toggleFriend(user._id);
@@ -25,7 +40,7 @@ const UserPreview = ({
       className={`user-preview flex justify-between${
         activChatUserId === user._id ? ' activ' : ''
       }`}
-      onClick={() => setChat(user.chatsIds)}
+      onClick={handleSetChat}
     >
       <div className="info flex justify-between">
         <div className="img">
@@ -45,13 +60,10 @@ const UserPreview = ({
       <section className="actions flex align-center">
         {isAdmin ? (
           <>
-            <button
-              className="delete"
-              onClick={(ev) => deleteUser(user._id, ev)}
-            >
+            <button className="delete" onClick={handelDeleteUser}>
               <AiOutlineUsergroupDelete />
             </button>
-            <button className="update" onClick={(ev) => updateUser(user, ev)}>
+            <button className="update" onClick={handelUpdateUser}>
               <FaUserEdit />
             </button>
           </>
