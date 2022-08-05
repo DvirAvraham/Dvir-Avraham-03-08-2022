@@ -79,7 +79,6 @@ function LoginPage() {
                 label="Fullname"
                 name="fullname"
                 autoComplete="fullname"
-                autoFocus
               />
             )}
             <TextField

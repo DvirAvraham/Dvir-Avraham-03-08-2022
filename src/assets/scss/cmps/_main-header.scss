@@ -1,0 +1,74 @@
+.main-header {
+  height: 60px;
+  border-bottom: 1px solid #dbdbdb;
+  .container {
+    max-width: 892px;
+    margin: 0 auto;
+    height: inherit;
+    .actions {
+      .toggle-dark {
+        margin-inline-end: 30px;
+      }
+      .admin {
+        background-color: rgba(255, 255, 255, 0);
+        font-size: 21px;
+        cursor: pointer;
+        margin-inline-end: 12px;
+      }
+      .logout {
+        border: 0;
+        background-color: #ffffff00;
+        color: #f60d45;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+  width: auto;
+  cursor: pointer;
+}
+
+.label {
+  width: 44px;
+  height: 21px;
+  background-color: #111;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+.ball {
+  width: 18px;
+  height: 17px;
+  background-color: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+  cursor: pointer;
+}
+
+.checkbox:checked + .label .ball {
+  transform: translateX(22px);
+}
+
+.moon {
+  color: pink;
+  font-size: 12px;
+}
+
+.sun {
+  color: yellow;
+  font-size: 12px;
+}
