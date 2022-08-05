@@ -11,6 +11,18 @@
     background-color: rgb(219, 219, 219);
   }
   .actions {
+    .update {
+      color: #0ab512f2;
+      font-size: 23px;
+      margin-inline-end: 10px;
+      cursor: pointer;
+    }
+    .delete {
+      color: #f6003bf2;
+      font-size: 23px;
+      margin-inline-end: 10px;
+      cursor: pointer;
+    }
     .toggle-friend {
       border: 0;
       font-size: 29px;

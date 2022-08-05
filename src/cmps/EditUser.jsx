@@ -15,6 +15,7 @@ const EditUser = ({ user, saveUser }) => {
         username,
         ...userToSave,
         fullname,
+        imgUrl: userToSave.imgUrl,
       };
     } else {
       userToSave = {
@@ -24,6 +25,7 @@ const EditUser = ({ user, saveUser }) => {
         fullname,
       };
     }
+    console.log(userToSave);
     saveUser(userToSave);
   };
 

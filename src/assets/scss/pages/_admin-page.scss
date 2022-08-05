@@ -1,0 +1,29 @@
+.admin-page {
+  .container {
+    .admin-users {
+      border: 1px solid #dbdbdb;
+      height: 72vh;
+      margin-top: 20px;
+      width: 392px;
+      .list-title {
+        border-bottom: 1px solid #dbdbdb;
+        padding: 20px;
+        font-weight: bold;
+      }
+    }
+    .title {
+      margin-top: 20px;
+      font-size: 28px;
+    }
+    .create {
+      position: fixed;
+      bottom: 66px;
+      right: 87px;
+      background-color: #87e619;
+      padding: 10px 38px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+}

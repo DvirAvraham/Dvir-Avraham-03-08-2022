@@ -4,7 +4,7 @@
   padding: 20px;
   height: 90vh;
   .list {
-    width: 430px;
+    width: 500px;
     border-bottom: 1px solid #dbdbdb;
     border-top: 1px solid #dbdbdb;
     border-left: 1px solid #dbdbdb;
@@ -12,6 +12,7 @@
       padding: 10px 20px;
       border-bottom: 1px solid #dbdbdb;
       height: 60px;
+      font-weight: bold;
       cursor: pointer;
       & > * {
         padding: 10px;

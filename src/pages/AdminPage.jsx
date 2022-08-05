@@ -10,7 +10,7 @@ const AdminPage = () => {
   const { loggedInUser } = useSelector((state) => state.userModule);
   const { users } = useSelector((state) => state.userModule);
 
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [userToEdit, setUserToEdit] = useState({});
 
   useEffect(() => {
@@ -36,20 +36,28 @@ const AdminPage = () => {
     dispatch(setUser(updatedUser));
   };
   return (
-    <>
+    <div className="admin-page">
       {loggedInUser?.isAdmin && (
-        <div className="admin-page main-layout">
+        <div className="container main-layout">
+          <div className="title">Admin, welcome back!</div>
           {isModalOpen && <EditUser user={userToEdit} saveUser={saveUser} />}
-          <UserList
-            users={usersToShow()}
-            updateUser={openModal}
-            deleteUser={deleteUser}
-            isAdmin={loggedInUser.isAdmin}
-          />
-          <button onClick={openModal}>add</button>
+          <div className="admin-users">
+            <div className="list-title flex justify-center align-center">
+              All users
+            </div>
+            <UserList
+              users={usersToShow()}
+              updateUser={openModal}
+              deleteUser={deleteUser}
+              isAdmin={loggedInUser.isAdmin}
+            />
+          </div>
+          <button className="create" onClick={openModal}>
+            Create User
+          </button>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

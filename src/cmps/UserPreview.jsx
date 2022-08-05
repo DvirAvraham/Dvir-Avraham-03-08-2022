@@ -1,4 +1,9 @@
-import { AiOutlineUserDelete, AiOutlineUserAdd } from 'react-icons/ai';
+import {
+  AiOutlineUserDelete,
+  AiOutlineUserAdd,
+  AiOutlineUsergroupDelete,
+} from 'react-icons/ai';
+import { FaUserEdit } from 'react-icons/fa';
 
 const UserPreview = ({
   user,
@@ -28,20 +33,36 @@ const UserPreview = ({
         </div>
         <div className="details flex column justify-center">
           <div>{user.fullname} </div>
-          <div className="msg flex">
-            <div>msg</div>
-            <span>·</span>
-            <div>1 hour ago</div>
-          </div>
+          {isFriendsList && (
+            <div className="msg flex">
+              <div>msg</div>
+              <span>·</span>
+              <div>1 hour ago</div>
+            </div>
+          )}
         </div>
       </div>
       <section className="actions flex align-center">
-        <button
-          className={`toggle-friend ${isFriendsList ? 'remove' : 'add'}`}
-          onClick={handleToggleFriend}
-        >
-          {isFriendsList ? <AiOutlineUserDelete /> : <AiOutlineUserAdd />}
-        </button>
+        {isAdmin ? (
+          <>
+            <button
+              className="delete"
+              onClick={(ev) => deleteUser(user._id, ev)}
+            >
+              <AiOutlineUsergroupDelete />
+            </button>
+            <button className="update" onClick={(ev) => updateUser(user, ev)}>
+              <FaUserEdit />
+            </button>
+          </>
+        ) : (
+          <button
+            className={`toggle-friend ${isFriendsList ? 'remove' : 'add'}`}
+            onClick={handleToggleFriend}
+          >
+            {isFriendsList ? <AiOutlineUserDelete /> : <AiOutlineUserAdd />}
+          </button>
+        )}
       </section>
     </div>
   );
