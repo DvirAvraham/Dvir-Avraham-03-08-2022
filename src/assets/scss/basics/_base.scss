@@ -8,11 +8,9 @@
 body {
   margin: 0;
   color: #333;
-  min-height: 100vh;
+  overflow: hidden; /* Hide scrollbars */
 }
-#root {
-  min-height: 100vh;
-}
+
 a {
   color: unset;
   text-decoration: none;

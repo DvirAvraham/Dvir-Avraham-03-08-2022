@@ -114,6 +114,7 @@ function LoginPage() {
             <Grid container>
               <Grid item>
                 <div
+                  className="underline"
                   variant="body2"
                   onClick={() => setIsSignup((state) => !state)}
                 >
