@@ -12,31 +12,30 @@ import Avatar from '@mui/material/Avatar';
 const theme = createTheme();
 
 const EditUser = ({ user, saveUser }) => {
-  const [fullname, setFullname] = useState(user?.fullname || '');
-  const [username, setUsername] = useState(user?.username || '');
-  const [password, setPassword] = useState('');
-  const [repassword, setRepassword] = useState('');
-
   const handleSetUser = (ev) => {
     ev.preventDefault();
+    const data = new FormData(ev.currentTarget);
     let userToSave;
     if (user?._id) {
       userToSave = JSON.parse(JSON.stringify(user));
       userToSave = {
-        username,
-        ...userToSave,
-        fullname,
-        imgUrl: userToSave.imgUrl,
+        username: data.get('username'),
+        fullname: data.get('fullname'),
+        imgUrl: user.imgUrl,
+        isAdmin: user.isAdmin,
+        chatsIds: user.chatsIds,
+        friendsIds: user.friendsIds,
+        _id: user._id,
       };
     } else {
       userToSave = {
-        username,
-        password,
-        repassword,
-        fullname,
+        username: data.get('username'),
+        fullname: data.get('fullname'),
+        password: data.get('password'),
       };
     }
-    console.log(userToSave);
+    console.log('userToSave', userToSave);
+    if (userToSave.password != data.get('repassword') && !user?._id) return;
     saveUser(userToSave);
   };
 
