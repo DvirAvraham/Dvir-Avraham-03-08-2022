@@ -1,5 +1,6 @@
 import LoginPage from './pages/LoginPage';
 import MsgApp from './pages/MsgApp';
+import AdminPage from './pages/AdminPage';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 import { socketService } from './services/socket-service';
@@ -90,6 +91,7 @@ const App = () => {
     <div className={`app  ${isDark ? 'dark' : ''}`}>
       <MainHeader toggleIsDark={toggleIsDark} />
       <Routes>
+        <Route path="/admin" element={<AdminPage />} />
         <Route path="/msg" element={<MsgApp />} />
         <Route path="/" element={<LoginPage />} />
       </Routes>

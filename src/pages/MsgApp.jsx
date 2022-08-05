@@ -3,14 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   loadFriends,
   loadUsers,
-  removeUser,
-  setUser,
   toggleFriends,
   setChat,
   loadLoggedInUser,
 } from '../store/actions/userActions';
-import FriendList from '../cmps/FriendList';
-import EditUser from '../cmps/EditUser';
+import UserList from '../cmps/UserList';
 import Chat from '../cmps/Chat';
 
 const MsgApp = () => {
@@ -21,9 +18,7 @@ const MsgApp = () => {
   const { users } = useSelector((state) => state.userModule);
   const { currChat } = useSelector((state) => state.userModule);
 
-  const [isModalOpen, setIsModalOpen] = useState(null);
   const [isChatOpen, setIsChatOpen] = useState(null);
-  const [userToEdit, setUserToEdit] = useState({});
   const [isFriendsList, setIsFriendsList] = useState(true);
   const [activChatUserId, setActivChatUserId] = useState('');
 
@@ -59,21 +54,6 @@ const MsgApp = () => {
     );
   };
 
-  const deleteUser = (id) => {
-    if (loggedInUser?.isAdmin) dispatch(removeUser(id));
-  };
-
-  const openModal = (user) => {
-    if (!loggedInUser?.isAdmin) return;
-    setIsModalOpen((state) => !state);
-    setUserToEdit(user);
-  };
-
-  const saveUser = (updatedUser) => {
-    setIsModalOpen((state) => !state);
-    dispatch(setUser(updatedUser));
-  };
-
   const toggleFriend = (id) => {
     dispatch(toggleFriends(id));
   };
@@ -91,8 +71,8 @@ const MsgApp = () => {
           <div onClick={() => setIsFriendsList(false)}>Users</div>
         </div>
         {(userFriends?.length || users?.length) && (
-          <FriendList
-            friends={isFriendsList ? userFriends : usersForDisplay()}
+          <UserList
+            users={isFriendsList ? userFriends : usersForDisplay()}
             toggleFriend={toggleFriend}
             setChat={handleSetChat}
             isFriendsList={isFriendsList}
@@ -109,11 +89,6 @@ const MsgApp = () => {
       ) : (
         <div className="mashu"></div>
       )}
-      {isModalOpen && <EditUser user={userToEdit} saveUser={saveUser} />}
-      {/* isAdmin={loggedInUser?.isAdmin} */}
-      {/* updateUser={openModal} */}
-      {/* deleteUser={deleteUser} */}
-      {loggedInUser?.isAdmin && <button onClick={openModal}>add</button>}
     </div>
   );
 };

@@ -1,30 +1,33 @@
 import { AiOutlineUserDelete, AiOutlineUserAdd } from 'react-icons/ai';
 
-const FriendPreview = ({
-  friend,
+const UserPreview = ({
+  user,
   toggleFriend,
   setChat,
   isFriendsList,
   activChatUserId,
+  updateUser,
+  deleteUser,
+  isAdmin,
 }) => {
   const handleToggleFriend = (ev) => {
     ev.stopPropagation();
-    toggleFriend(friend._id);
+    toggleFriend(user._id);
   };
 
   return (
     <div
       className={`user-preview flex justify-between${
-        activChatUserId === friend._id ? ' activ' : ''
+        activChatUserId === user._id ? ' activ' : ''
       }`}
-      onClick={() => setChat(friend.chatsIds)}
+      onClick={() => setChat(user.chatsIds)}
     >
       <div className="info flex justify-between">
         <div className="img">
-          <img src={friend.imgUrl} alt="" />
+          <img src={user.imgUrl} alt="" />
         </div>
         <div className="details flex column justify-center">
-          <div>{friend.fullname} </div>
+          <div>{user.fullname} </div>
           <div className="msg flex">
             <div>msg</div>
             <span>·</span>
@@ -44,4 +47,4 @@ const FriendPreview = ({
   );
 };
 
-export default FriendPreview;
+export default UserPreview;

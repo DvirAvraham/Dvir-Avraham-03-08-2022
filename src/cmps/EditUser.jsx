@@ -4,6 +4,7 @@ const EditUser = ({ user, saveUser }) => {
   const [fullname, setFullname] = useState(user?.fullname || '');
   const [username, setUsername] = useState(user?.username || '');
   const [password, setPassword] = useState('');
+  const [repassword, setRepassword] = useState('');
 
   const handleSetUser = (ev) => {
     ev.preventDefault();
@@ -19,6 +20,7 @@ const EditUser = ({ user, saveUser }) => {
       userToSave = {
         username,
         password,
+        repassword,
         fullname,
       };
     }
@@ -42,13 +44,24 @@ const EditUser = ({ user, saveUser }) => {
             setUsername(ev.target.value);
           }}
         />
-        <input
-          type="password"
-          value={password}
-          onChange={(ev) => {
-            setPassword(ev.target.value);
-          }}
-        />
+        {!user?._id && (
+          <>
+            <input
+              type="password"
+              value={password}
+              onChange={(ev) => {
+                setPassword(ev.target.value);
+              }}
+            />
+            <input
+              type="password"
+              value={repassword}
+              onChange={(ev) => {
+                setRepassword(ev.target.value);
+              }}
+            />
+          </>
+        )}
         <button>Save</button>
       </form>
     </div>

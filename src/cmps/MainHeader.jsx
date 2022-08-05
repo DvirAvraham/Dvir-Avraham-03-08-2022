@@ -4,7 +4,7 @@ import { FiLogOut } from 'react-icons/fi';
 import { GrUserAdmin } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
 
-const MainHeader = ({ toggleIsDark }) => {
+const MainHeader = ({ toggleIsDark, isAdmin }) => {
   return (
     <div className="main-header ">
       <section className="container flex justify-between main-layout align-center">

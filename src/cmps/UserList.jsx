@@ -1,23 +1,29 @@
-import FriendPreview from './FriendPreview';
-const FriendList = ({
-  friends,
+import UserPreview from './UserPreview';
+const UserList = ({
+  users,
   toggleFriend,
   setChat,
   isFriendsList,
   activChatUserId,
+  updateUser,
+  deleteUser,
+  isAdmin,
 }) => {
   return (
     <div className="user-list">
       <section className=" flex column user-container">
-        {friends?.length ? (
-          friends.map((friend) => (
-            <FriendPreview
-              key={friend._id}
-              friend={friend}
+        {users?.length ? (
+          users.map((user) => (
+            <UserPreview
+              key={user._id}
+              user={user}
               toggleFriend={toggleFriend}
               setChat={setChat}
               isFriendsList={isFriendsList}
               activChatUserId={activChatUserId}
+              updateUser={updateUser}
+              deleteUser={deleteUser}
+              isAdmin={isAdmin}
             />
           ))
         ) : (
@@ -28,4 +34,4 @@ const FriendList = ({
   );
 };
 
-export default FriendList;
+export default UserList;
