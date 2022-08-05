@@ -85,7 +85,7 @@ const MsgApp = () => {
       </div>
 
       <div className="msg-app main-layout flex">
-        <section className="list flex column ">
+        <section className={`list flex column ${isDark ? 'dark' : ''}`}>
           <div className="toggle flex justify-around align-center">
             <div onClick={() => setIsFriendsList(true)}>Friends</div>
             <div onClick={() => setIsFriendsList(false)}>Users</div>
@@ -101,7 +101,11 @@ const MsgApp = () => {
           )}
         </section>
         {isFriendsList ? (
-          <div className={`main-chat ${activChatUser ? 'activ' : ''} `}>
+          <div
+            className={`main-chat ${activChatUser ? 'activ' : ''} ${
+              isDark ? 'dark' : ''
+            }`}
+          >
             {isChatOpen ? (
               <>
                 <div className="chat-header flex align-center">
