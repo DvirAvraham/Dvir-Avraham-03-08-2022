@@ -63,6 +63,9 @@
     height: 30px;
     width: 258px;
     border-radius: 2px;
+    &.transparent {
+      background-color: #1976d200;
+    }
   }
 }
 .greet-title {

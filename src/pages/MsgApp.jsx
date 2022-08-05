@@ -99,11 +99,17 @@ const MsgApp = () => {
                 <Chat currChat={currChat} loggedInUserId={loggedInUser._id} />
               </>
             ) : (
-              <ChatFiller />
+              <ChatFiller
+                txt={'Send private messages to your friends.'}
+                isFriendsList={isFriendsList}
+              />
             )}
           </div>
         ) : (
-          <ChatFiller />
+          <ChatFiller
+            txt={'Add user to your friends and start chatting.'}
+            isFriendsList={isFriendsList}
+          />
         )}
       </div>
     </div>

@@ -1,6 +1,11 @@
 .user-list {
   overflow-y: scroll;
   max-height: calc(100% - 60px);
+  .msg {
+    margin-top: 20px;
+    font-size: 18px;
+    color: rgb(142, 142, 142);
+  }
 
   &::-webkit-scrollbar {
     width: 9px;

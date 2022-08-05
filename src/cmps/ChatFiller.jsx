@@ -1,16 +1,14 @@
 import msg from '../assets/imgs/msg.png';
 
-const ChatFiller = () => {
+const ChatFiller = ({ txt, isFriendsList }) => {
   return (
     <div className="chat-filler flex column align-center justify-center">
       <div>
         <img src={msg} alt="" />
       </div>
       <div className="title">Your Messages</div>
-      <div className="desc">
-        Send private photos and messages to a friend or group.
-      </div>
-      <button className="info">
+      <div className="desc">{txt}</div>
+      <button className={`info ${isFriendsList ? '' : 'transparent'}`}>
         Click on a friend to start a conversation
       </button>
     </div>
