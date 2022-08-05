@@ -102,7 +102,9 @@ const App = () => {
         isDark={isDark}
       />
       <Routes>
-        <Route path="/admin" element={<AdminPage />} />
+        {loggedInUser?.isAdmin && (
+          <Route path="/admin" element={<AdminPage />} />
+        )}
         <Route path="/msg" element={<MsgApp />} />
         <Route path="/" element={<LoginPage />} />
       </Routes>
