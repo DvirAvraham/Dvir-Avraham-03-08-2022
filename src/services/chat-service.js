@@ -26,5 +26,6 @@ async function getById(id) {
     return res.data;
   } catch (err) {
     console.error('Err while getting chat from the server', err);
+    throw err;
   }
 }

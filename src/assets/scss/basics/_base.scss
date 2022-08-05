@@ -11,6 +11,10 @@ body {
   overflow: hidden; /* Hide scrollbars */
 }
 
+#root {
+  height: 100vh;
+}
+
 a {
   color: unset;
   text-decoration: none;

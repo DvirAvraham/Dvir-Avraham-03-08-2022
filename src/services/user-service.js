@@ -20,6 +20,7 @@ async function getUsers() {
     return res.data;
   } catch (err) {
     console.error('Err while getting users from the server', err);
+    throw err;
   }
 }
 async function getById(id) {
@@ -28,6 +29,7 @@ async function getById(id) {
     return res.data;
   } catch (err) {
     console.error('Err while getting user from the server', err);
+    throw err;
   }
 }
 
@@ -38,6 +40,7 @@ async function remove(id) {
     return res.data;
   } catch (err) {
     console.error('Err while deleting user from the server', err);
+    throw err;
   }
 }
 
@@ -51,5 +54,6 @@ async function save(user) {
     }
   } catch (err) {
     console.error('Err while saving user', err);
+    throw err;
   }
 }

@@ -18,6 +18,7 @@ const MsgApp = () => {
   const { userFriends } = useSelector((state) => state.userModule);
   const { users } = useSelector((state) => state.userModule);
   const { currChat } = useSelector((state) => state.userModule);
+  const { isDark } = useSelector((state) => state.userModule);
 
   const [isChatOpen, setIsChatOpen] = useState(null);
   const [isFriendsList, setIsFriendsList] = useState(true);
@@ -96,17 +97,23 @@ const MsgApp = () => {
                   </div>
                   <div className="user-name">{activChatUser.fullname}</div>
                 </div>
-                <Chat currChat={currChat} loggedInUserId={loggedInUser._id} />
+                <Chat
+                  currChat={currChat}
+                  loggedInUserId={loggedInUser._id}
+                  isDark={isDark}
+                />
               </>
             ) : (
               <ChatFiller
                 txt={'Send private messages to your friends.'}
                 isFriendsList={isFriendsList}
+                isDark={isDark}
               />
             )}
           </div>
         ) : (
           <ChatFiller
+            isDark={isDark}
             txt={'Add user to your friends and start chatting.'}
             isFriendsList={isFriendsList}
           />

@@ -30,7 +30,7 @@
       }
       &.my {
         border: 0;
-        background-color: #eee;
+        background-color: #958080;
         text-align: end;
         display: flex;
         align-self: flex-end;
@@ -51,6 +51,10 @@
       border-radius: 40px;
       margin-inline-start: 25px;
       width: 83%;
+      &.dark {
+        background-color: #262626 !important;
+        color: #fff;
+      }
       &:focus {
         outline: 0;
       }

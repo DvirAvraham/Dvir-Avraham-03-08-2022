@@ -4,6 +4,7 @@ import {
   AiOutlineUsergroupDelete,
 } from 'react-icons/ai';
 import { FaUserEdit } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 const UserPreview = ({
   user,
@@ -15,6 +16,8 @@ const UserPreview = ({
   deleteUser,
   isAdmin,
 }) => {
+  const { isDark } = useSelector((state) => state.userModule);
+
   const handelDeleteUser = (ev) => {
     ev.stopPropagation();
     deleteUser(user._id);
@@ -39,10 +42,10 @@ const UserPreview = ({
     <div
       className={`user-preview flex justify-between${
         activChatUserId === user._id ? ' activ' : ''
-      }`}
+      } ${isDark ? 'dark' : ''}`}
       onClick={handleSetChat}
     >
-      <div className="info flex justify-between">
+      <div className={`info flex justify-between ${isDark ? 'dark' : ''}`}>
         <div className="img">
           <img src={user.imgUrl} alt="" />
         </div>

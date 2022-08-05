@@ -35,12 +35,12 @@ async function signup({ username, password, fullname }) {
   }
 }
 
-async function logout(id) {
+async function logout() {
   try {
-    const res = await axios.delete(BASE_URL + id);
+    const res = await axios.post(BASE_URL + 'logout');
     return res.data;
   } catch (err) {
-    console.error('Err while deleting user from the server', err);
+    console.error('Err while logging out', err);
     throw err;
   }
 }

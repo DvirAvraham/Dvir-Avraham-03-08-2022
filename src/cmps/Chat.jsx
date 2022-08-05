@@ -4,7 +4,7 @@ import { addMsg } from '../store/actions/userActions';
 import { FiSend } from 'react-icons/fi';
 import Time from 'react-time';
 
-const Chat = ({ currChat, loggedInUserId }) => {
+const Chat = ({ currChat, loggedInUserId, isDark }) => {
   const elScroll = useRef(null);
   const dispatch = useDispatch();
   const [txt, setTxt] = useState('');
@@ -23,21 +23,6 @@ const Chat = ({ currChat, loggedInUserId }) => {
     if (elScroll?.current) elScroll.current.scrollBy(0, 2000);
   };
 
-  // const scrollBottom = () => {
-  //   console.log('first');
-  //   if (!chatRef?.current) return;
-  //   chatRef.current.scrollIntoView(
-  //     {
-  //       behavior: 'smooth',
-  //     },
-  //     [currChat]
-  //   );
-  // };
-
-  // useEffect(() => {
-  //   scrollBottom();
-  // }, []);
-
   return (
     <div className="chat flex column">
       <div className="msgs flex column grow-1" ref={elScroll}>
@@ -47,7 +32,7 @@ const Chat = ({ currChat, loggedInUserId }) => {
               <div
                 className={`flex justify-between msg ${
                   msg.createdBy === loggedInUserId ? 'my' : ''
-                } `}
+                } ${isDark ? 'dark' : ''} `}
                 key={idx}
               >
                 <div> {msg.txt} </div>
@@ -58,6 +43,7 @@ const Chat = ({ currChat, loggedInUserId }) => {
       </div>
       <div className="actions flex">
         <input
+          className={`${isDark ? 'dark' : ''}`}
           type="text"
           placeholder="Message..."
           value={txt}

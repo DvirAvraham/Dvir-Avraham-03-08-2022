@@ -42,6 +42,17 @@ export function loadFriends() {
   };
 }
 
+export function logout() {
+  return async (dispatch) => {
+    try {
+      await authService.logout();
+      utilService.save('user_db', '');
+      dispatch({ type: 'SET_USER', loggedInUser: null });
+    } catch (err) {
+      dispatch(handleError(`Faild logout`));
+    }
+  };
+}
 export function loadUsers() {
   return async (dispatch) => {
     try {

@@ -1,26 +1,26 @@
 import LoginPage from './pages/LoginPage';
 import MsgApp from './pages/MsgApp';
 import AdminPage from './pages/AdminPage';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { socketService } from './services/socket-service';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MainHeader from './cmps/MainHeader';
 
-// MdDarkMode;
-// BsFillSunFill
 import {
   loadLoggedInUser,
   setFriend,
   setChat,
   toggleDarkMode,
   loadFriends,
+  logout,
 } from './store/actions/userActions';
 import { useSelector, useDispatch } from 'react-redux';
 
 const App = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { loggedInUser } = useSelector((state) => state.userModule);
   const { errorMsg } = useSelector((state) => state.userModule);
@@ -28,6 +28,11 @@ const App = () => {
 
   const toggleIsDark = () => {
     dispatch(toggleDarkMode());
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
   };
 
   useEffect(() => {
@@ -90,7 +95,12 @@ const App = () => {
 
   return (
     <div className={`app  ${isDark ? 'dark' : ''}`}>
-      <MainHeader toggleIsDark={toggleIsDark} loggedInUser={loggedInUser} />
+      <MainHeader
+        toggleIsDark={toggleIsDark}
+        loggedInUser={loggedInUser}
+        handleLogout={handleLogout}
+        isDark={isDark}
+      />
       <Routes>
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/msg" element={<MsgApp />} />

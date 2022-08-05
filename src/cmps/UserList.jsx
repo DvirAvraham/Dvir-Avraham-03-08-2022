@@ -8,6 +8,7 @@ const UserList = ({
   updateUser,
   deleteUser,
   isAdmin,
+  isDark,
 }) => {
   return (
     <div className="user-list">
