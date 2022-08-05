@@ -38,9 +38,8 @@ const AdminPage = () => {
   return (
     <div className="admin-page">
       {loggedInUser?.isAdmin && (
-        <div className="container main-layout">
+        <div className={`container main-layout ${isModalOpen && 'blur'}`}>
           <div className="title">Admin, welcome back!</div>
-          {isModalOpen && <EditUser user={userToEdit} saveUser={saveUser} />}
           <div className="admin-users">
             <div className="list-title flex justify-center align-center">
               All users
@@ -52,11 +51,18 @@ const AdminPage = () => {
               isAdmin={loggedInUser.isAdmin}
             />
           </div>
-          <button className="create" onClick={openModal}>
-            Create User
-          </button>
+          {!isModalOpen && (
+            <button className="create" onClick={openModal}>
+              Create User
+            </button>
+          )}
         </div>
       )}
+      {isModalOpen && <EditUser user={userToEdit} saveUser={saveUser} />}
+      <div
+        className={isModalOpen && 'cover'}
+        onClick={() => setIsModalOpen(false)}
+      ></div>
     </div>
   );
 };

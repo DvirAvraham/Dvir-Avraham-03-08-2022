@@ -22,6 +22,7 @@ import { useSelector, useDispatch } from 'react-redux';
 const App = () => {
   const dispatch = useDispatch();
 
+  const { loggedInUser } = useSelector((state) => state.userModule);
   const { errorMsg } = useSelector((state) => state.userModule);
   const { isDark } = useSelector((state) => state.userModule);
 
@@ -89,7 +90,7 @@ const App = () => {
 
   return (
     <div className={`app  ${isDark ? 'dark' : ''}`}>
-      <MainHeader toggleIsDark={toggleIsDark} />
+      <MainHeader toggleIsDark={toggleIsDark} loggedInUser={loggedInUser} />
       <Routes>
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/msg" element={<MsgApp />} />

@@ -1,0 +1,39 @@
+.edit-user {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  background-color: #dbdbdb;
+  padding: 14px 36px;
+  transform: translate(-50%, -50%);
+  box-shadow: aliceblue;
+  box-shadow: 6px 5px 15px 5px rgb(0 0 0 / 37%);
+  z-index: 10;
+  width: 421px;
+  form {
+    gap: 20px;
+  }
+}
+
+.edit-form-title {
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.334;
+  margin-top: 9px;
+  margin-bottom: -7px;
+}
+.cover {
+  position: absolute;
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(61 52 52 / 7%);
+  top: 0;
+  cursor: pointer;
+}
+.blur {
+  filter: blur(1px);
+}
+
+.css-1999axt-MuiAvatar-root {
+  margin: 0 auto !important;
+}
