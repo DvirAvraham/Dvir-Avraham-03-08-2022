@@ -1,5 +1,7 @@
 .user-list {
   overflow-y: scroll;
+  max-height: calc(100% - 60px);
+
   &::-webkit-scrollbar {
     width: 9px;
   }

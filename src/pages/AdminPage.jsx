@@ -60,7 +60,7 @@ const AdminPage = () => {
       )}
       {isModalOpen && <EditUser user={userToEdit} saveUser={saveUser} />}
       <div
-        className={isModalOpen && 'cover'}
+        className={isModalOpen ? 'cover' : null}
         onClick={() => setIsModalOpen(false)}
       ></div>
     </div>
