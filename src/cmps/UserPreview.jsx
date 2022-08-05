@@ -4,7 +4,7 @@ import {
   AiOutlineUsergroupDelete,
 } from 'react-icons/ai';
 import { FaUserEdit } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const UserPreview = ({
   user,
@@ -29,8 +29,10 @@ const UserPreview = ({
   };
 
   const handleSetChat = () => {
+    console.log(user);
     if (isAdmin) return;
-    setChat(user.chatsIds);
+
+    setChat(user);
   };
 
   const handleToggleFriend = (ev) => {

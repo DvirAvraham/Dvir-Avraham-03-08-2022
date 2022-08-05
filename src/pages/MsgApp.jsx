@@ -6,6 +6,7 @@ import {
   toggleFriends,
   setChat,
   loadLoggedInUser,
+  handleError,
 } from '../store/actions/userActions';
 import UserList from '../cmps/UserList';
 import Chat from '../cmps/Chat';
@@ -69,9 +70,12 @@ const MsgApp = () => {
     dispatch(toggleFriends(id));
   };
 
-  const handleSetChat = (friendChatsIds) => {
+  const handleSetChat = (user) => {
+    if (!loggedInUser.isPremium) {
+      return dispatch(handleError('Only premium users can chat!'));
+    }
     setIsChatOpen(true);
-    dispatch(setChat(friendChatsIds, null));
+    dispatch(setChat(user.chatsIds, null));
   };
 
   return (

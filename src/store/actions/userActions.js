@@ -228,7 +228,7 @@ export function toggleDarkMode() {
   };
 }
 
-function handleError(msg) {
+export function handleError(msg) {
   return async (dispatch) => {
     try {
       dispatch({ type: 'SET_MSG', errorMsg: msg });
