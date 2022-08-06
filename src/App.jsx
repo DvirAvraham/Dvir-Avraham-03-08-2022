@@ -27,6 +27,11 @@ const App = () => {
   const { errorMsg } = useSelector((state) => state.userModule);
   const { isDark } = useSelector((state) => state.userModule);
 
+  const fetchData = async () => {
+    await dispatch(loadLoggedInUser());
+    dispatch(loadFriends());
+    dispatch(loadUsers());
+  };
   const toggleIsDark = () => {
     dispatch(toggleDarkMode());
   };
@@ -79,17 +84,21 @@ const App = () => {
 
   useEffect(() => {
     socketService.off('toggeled-friends');
+    socketService.off('fetch-data');
     socketService.off('load-user');
     socketService.off('msg-notify');
     socketService.off('load-users');
+    socketService.on('fetch-data', fetchData);
     socketService.on('load-users', () => dispatch(loadUsers()));
     socketService.on('toggeled-friends', updateFriends);
     socketService.on('load-user', async () => {
       await dispatch(loadLoggedInUser());
       dispatch(loadFriends());
+      console.log('done');
     });
     socketService.on('msg-notify', updateChat);
     return () => {
+      socketService.off('fetch-data');
       socketService.off('load-users');
       socketService.off('toggeled-friends');
       socketService.off('load-user');
@@ -109,14 +118,8 @@ const App = () => {
         {loggedInUser?.isAdmin && (
           <Route path="/admin" element={<AdminPage />} />
         )}
-        {loggedInUser?._id ? (
-          <>
-            <Route path="/msg" element={<MsgApp />} />
-            <Route path="*" element={<Navigate to="/msg" replace />} />
-          </>
-        ) : (
-          <Route path="/" element={<LoginPage />} />
-        )}
+        <Route path="/msg" element={<MsgApp />} />
+        <Route path="/" element={<LoginPage />} />
       </Routes>
       <ToastContainer />
     </div>

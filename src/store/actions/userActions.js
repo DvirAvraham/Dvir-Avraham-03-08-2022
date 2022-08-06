@@ -70,7 +70,12 @@ export function removeUser(id) {
     try {
       await userService.remove(id);
       const { users } = getState().userModule;
+      const { loggedInUser } = getState().userModule;
       const updatedUsers = users.filter((user) => user._id !== id);
+      socketService.emit('user-removed', {
+        userId: id,
+        fromId: loggedInUser?._id,
+      });
       dispatch({ type: 'SET_USERS', users: updatedUsers });
     } catch (err) {
       dispatch(handleError('Error while removing user'));
