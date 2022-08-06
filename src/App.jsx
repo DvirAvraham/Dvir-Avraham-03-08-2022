@@ -1,7 +1,7 @@
 import LoginPage from './pages/LoginPage';
 import MsgApp from './pages/MsgApp';
 import AdminPage from './pages/AdminPage';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { socketService } from './services/socket-service';
 import { ToastContainer, toast } from 'react-toastify';
@@ -109,8 +109,14 @@ const App = () => {
         {loggedInUser?.isAdmin && (
           <Route path="/admin" element={<AdminPage />} />
         )}
-        <Route path="/msg" element={<MsgApp />} />
-        <Route path="/" element={<LoginPage />} />
+        {loggedInUser?._id ? (
+          <>
+            <Route path="/msg" element={<MsgApp />} />
+            <Route path="*" element={<Navigate to="/msg" replace />} />
+          </>
+        ) : (
+          <Route path="/" element={<LoginPage />} />
+        )}
       </Routes>
       <ToastContainer />
     </div>
